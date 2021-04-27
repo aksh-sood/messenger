@@ -1,3 +1,8 @@
+
+
+
+
+
 # Miscellaneous
 *.class
 *.log
@@ -8,6 +13,8 @@
 .buildlog/
 .history
 .svn/
+.test/
+.web/
 
 # IntelliJ related
 *.iml
