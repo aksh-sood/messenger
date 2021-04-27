@@ -20,7 +20,7 @@ class _WelcomeScreenState extends State<WelcomeScreen>
     super.initState();
     color = AnimationController(vsync: this, duration: Duration(seconds: 2));
     animationColor =
-        ColorTween(begin: Colors.black, end: Colors.white).animate(color);
+        ColorTween(begin: Colors.blue, end: Colors.white).animate(color);
     controller = AnimationController(
       // upperBound:0.5,
       vsync: this,
@@ -59,39 +59,41 @@ class _WelcomeScreenState extends State<WelcomeScreen>
       backgroundColor: animationColor.value,
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 24.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: <Widget>[
-            Row(
-              children: <Widget>[
-                Hero(
-                  tag: "logo",
-                  child: Container(
-                    child: Image.asset('images/logo.png'),
-                    height: animationLogo.value * 100,
+        child: SafeArea(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: <Widget>[
+              Row(
+                children: <Widget>[
+                  Hero(
+                    tag: "logo",
+                    child: Container(
+                      child: Image.asset('images/logo.png'),
+                      height: animationLogo.value * 100,
+                    ),
                   ),
-                ),
-                TypewriterAnimatedTextKit(
-                  text: ['', 'Flash Chat'],
-                  pause: const Duration(milliseconds: 1400),
-                  speed: Duration(milliseconds: 45),
-                  totalRepeatCount: 1,
-                  repeatForever: false,
-                  textStyle: TextStyle(
-                    color: Colors.black,
-                    fontSize: 45.0,
-                    fontWeight: FontWeight.w900,
+                  TypewriterAnimatedTextKit(
+                    text: ['', 'Flash Chat'],
+                    pause: const Duration(milliseconds: 1400),
+                    speed: Duration(milliseconds: 45),
+                    totalRepeatCount: 1,
+                    repeatForever: false,
+                    textStyle: TextStyle(
+                      color: Colors.black,
+                      fontSize: 45.0,
+                      fontWeight: FontWeight.w900,
+                    ),
                   ),
-                ),
-              ],
-            ),
-            SizedBox(
-              height: 48.0,
-            ),
-            RoundedButton(buttonColor: Colors.lightBlueAccent , buttonText: 'Log In', buttonRoute: '/login'),
-           RoundedButton(buttonColor: Colors.blueAccent, buttonText: 'Register', buttonRoute: '/registration'),
-          ],
+                ],
+              ),
+              SizedBox(
+                height: 48.0,
+              ),
+              RoundedButton(buttonColor: Colors.lightBlueAccent , buttonText: 'Log In', buttonRoute: 'login'),
+             RoundedButton(buttonColor: Colors.blueAccent, buttonText: 'Register', buttonRoute: 'registration'),
+            ],
+          ),
         ),
       ),
     );
