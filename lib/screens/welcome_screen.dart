@@ -66,11 +66,13 @@ class _WelcomeScreenState extends State<WelcomeScreen>
             children: <Widget>[
               Row(
                 children: <Widget>[
-                  Hero(
-                    tag: "logo",
-                    child: Container(
-                      child: Image.asset('images/logo.png'),
-                      height: animationLogo.value * 100,
+                  Flexible(
+                    child: Hero(
+                      tag: "logo",
+                      child: Container(
+                        child: Image.asset('images/logo.png'),
+                        height: animationLogo.value * 100,
+                      ),
                     ),
                   ),
                   TypewriterAnimatedTextKit(
@@ -90,8 +92,16 @@ class _WelcomeScreenState extends State<WelcomeScreen>
               SizedBox(
                 height: 48.0,
               ),
-              RoundedButton(buttonColor: Colors.lightBlueAccent , buttonText: 'Log In', buttonRoute: 'login'),
-             RoundedButton(buttonColor: Colors.blueAccent, buttonText: 'Register', buttonRoute: 'registration'),
+              RoundedButton(buttonColor: Colors.lightBlueAccent , buttonText: 'Log In',
+              onpressed: (){
+                Navigator.pushNamed(context, 'login');
+              },
+              ),
+             RoundedButton(buttonColor: Colors.blueAccent, buttonText: 'Register',
+             onpressed: (){
+               Navigator.pushNamed(context, 'registration');
+             },
+             ),
             ],
           ),
         ),
