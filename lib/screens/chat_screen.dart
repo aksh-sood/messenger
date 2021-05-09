@@ -137,15 +137,15 @@ class MessageStream extends StatelessWidget {
           List<MessageBubble> messageWidgets=[];
           for(var message in messages){
             final messageText=message.get('text');
-
+            final messageTime=(message.get('timestamp') as Timestamp).toDate();
             final  messageSender=message.data()['sender'];
-            // final currentUser=loggedInUser.email;
+            final currentUser=loggedInUser.email;
 //             if (currentUser==messageSender){
 // userOnline=true;
 //             }
 
             final messageWidget=
-            MessageBubble(sender: messageSender,text: messageText,isMe:true );
+            MessageBubble(sender: messageSender,time:messageTime,text: messageText,isMe:currentUser==messageSender );
             messageWidgets.add(messageWidget);
           }
           return Expanded(
@@ -165,9 +165,10 @@ reverse: true,
 
 
 class MessageBubble extends StatelessWidget {
-  MessageBubble({this.sender,this.text,this.isMe});
+  MessageBubble({this.sender,this.time,this.text,this.isMe});
   final String sender;
   final String text;
+  final DateTime time;
   final bool isMe;
 
   @override
@@ -188,19 +189,36 @@ class MessageBubble extends StatelessWidget {
             
             color:isMe?Colors.lightBlueAccent:Colors.white,
             
-            child:Padding(
-              padding: const EdgeInsets.symmetric(vertical:8.0,horizontal: 20),
-              child: Text(
-              '$text',
-              style: TextStyle(
-                color: isMe?Colors.white:Colors.black,
-                fontSize: 17,
-              ),),
+            child:Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical:8.0,horizontal: 20),
+                  child: Text(
+                  '$text',
+                  style: TextStyle(
+                    color: isMe?Colors.white:Colors.black,
+                    fontSize: 17,
+                  ),),
+                ),
+              // Row(
+              //   mainAxisAlignment: MainAxisAlignment.end,
+              //   children: [
+              //     Text(
+              //       '$time',
+              //       style: TextStyle(
+              //         color: Colors.grey,
+              //       ),
+              //     ),
+              //   ],
+              // ),
+              ],
             ),),
+
           Text(sender,
             style: TextStyle(
-                color: Colors.grey,
+              color: Colors.grey,
             ),),
+
           SizedBox(height: 10,),
         ],
       ),
